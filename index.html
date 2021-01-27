@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>saynon,s-Bank</title>
+    <title>saymon,s-Bank</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,8 +19,8 @@
          <button id="login" class="btn btn-success" >Enter</button>
      </div>
     </div>
-    <dib id="transection-area">
-        <h1> Transection Area</h1>
+    <dib id="transaction-area">
+        <h1> Transaction Area</h1>
         <div class="row text-center">
          <div class="col-md-4 ">
             <div class="deposit status">
@@ -52,29 +52,28 @@
             <div class="col-md-6">
                <div class="submit-area">
                 <h4>Withdraw</h4>
-                <input class="form-control" type="text" placeholder="$ amount you want to withdraw"><br>
-                <button id="add-withdraw" class="btn btn-success">Withdraw</button>
+                <input id="withdrawAmount" class="form-control" type="text" placeholder="$ amount you want to withdraw"><br>
+                <button id="addWithdraw" class="btn btn-success">Withdraw</button>
                </div>
             </div>
         </div>
     </dib>
     
 <script>
-    // login button event handaller
+    // login button event handler
     var loginBtn = document.getElementById("login");
     loginBtn.addEventListener("click",function(){
         var loginArea = document.getElementById("login-area")
         loginArea.style.display="none"
-        var transectionArea =document.getElementById('transection-area')
-        transectionArea.style.display="block"
+        var transactionArea =document.getElementById('transaction-area')
+        transactionArea.style.display="block"
     })
 
-// deposit button event hand-lar
+// deposit button event handler
 
 const depositBtn=document.getElementById("add-deposit");
  depositBtn.addEventListener('click',function(){
-  const depositAmount =document.getElementById("depositAmount").value;
-  const depositNumber = parseFloat(depositAmount);
+  const depositNumber = getInputNumber("depositAmount")
 
 
 
@@ -85,6 +84,23 @@ const depositBtn=document.getElementById("add-deposit");
   document.getElementById("depositAmount").value ="" ;
 
 })
+
+// withdraw button event handler
+
+const withdrawBtn = document.getElementById("addWithdraw");
+withdrawBtn.addEventListener('click', function(){
+  const withdrawNumber = getInputNumber("withdrawAmount");
+  console.log(withdrawNumber);
+})
+
+function getInputNumber(id){
+   const amount = document.getElementById(id).value;
+   const amountNumber = parseFloat(amount);
+   return amountNumber;
+}
+
+
+
 
 function updateSpanText(id,depositNumber){
   const currentBalance = document.getElementById(id).innerText;
